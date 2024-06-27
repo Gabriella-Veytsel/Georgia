@@ -22,6 +22,10 @@ ww1 <- output_aligned1 %>% filter(grepl("^W", output_aligned1$seq.name)) #ww onl
 ww1 <- rbind(ref_seq1, ww1) #ww + ref
 output_aligned1 <- output_aligned1 %>% filter(!grepl("^W", output_aligned1$seq.name)) #clinical only
 
+#Analysis 2
+ww2 <- read.fasta("D:/wastewater/analysis2/ww full length/output.fasta")
+ref_seq2 <- ww2[1, ]
+
 #Analysis 3
 #Read alignment
 output_aligned3 <- read.fasta("D:/wastewater/analysis3/output.fasta")
@@ -89,6 +93,12 @@ data1 <- data_with_compared_seqs %>% select(seq.name, compared_sequences) %>% re
 data1 <- rbind(data1, output_aligned1)
 dat2fasta(data1, "D:/wastewater/analysis1/all full length/mafft/output_mismatch4.fasta")
 
+#Analysis 2
+data_with_compared_seqs2 <- frankenseq(ww2, 10)
+data2 <- data_with_compared_seqs2 %>% select(seq.name, compared_sequences) %>% rename("seq.text" = "compared_sequences")
+data2 <- rbind(data2, ref_seq2)
+dat2fasta(data2, "D:/wastewater/analysis2/ww full length/output_mismatch4.fasta")
+
 #Analysis 3
 data_with_compared_seqs3 <- frankenseq(ww3, 10)
 data3 <- data_with_compared_seqs3 %>% select(seq.name, compared_sequences) %>% rename("seq.text" = "compared_sequences")
@@ -111,4 +121,10 @@ time_length(ymd("2022-09-05")-ymd("2020-08-28"), "years")
 time_length(ymd("2022-09-05")-ymd("2020-10-19"), "years")
 time_length(ymd("2022-09-05")-ymd("2021-10-09"), "years")
 time_length(ymd("2022-09-05")-ymd("2019-12-26"), "years")
-time_length(ymd("2022-01-19")-ymd("2019-12-26"), "years")
+time_length(ymd("2022-09-05")-ymd("2019-12-26"), "years")
+
+time_length(ymd("2022-02-24")-ymd("2020-08-28"), "years")
+time_length(ymd("2022-02-24")-ymd("2020-10-19"), "years")
+time_length(ymd("2022-02-24")-ymd("2021-10-09"), "years")
+time_length(ymd("2022-02-24")-ymd("2019-12-26"), "years")
+time_length(ymd("2022-02-24")-ymd("2019-12-26"), "years")

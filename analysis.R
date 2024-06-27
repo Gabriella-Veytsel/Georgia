@@ -1,9 +1,15 @@
 library(tidyverse)
+library(ggtree)
 library(ggplot2)
 library(readxl)
 library(phylotools)
 
 source("C:/Users/Gabriella Veytsel/OneDrive/Documents/Clean/functions.R")
+
+# if (!require("BiocManager", quietly = TRUE))
+#   install.packages("BiocManager")
+# 
+# BiocManager::install("ggtree")
 
 #########
 #Clinical
@@ -156,3 +162,7 @@ library(treeio)
 tree2 <- read.tree("D:/wastewater/analysis2/ww full length/iqtree/ww_full_removeNs_aligned_matched4_rmgaps_trim_date.fasta.treefile")
 tree2 <- root(tree2, "MN908947.3")
 write.tree(tree2, "D:/wastewater/analysis2/ww full length/iqtree/ww_full_removeNs_aligned_matched4_rmgaps_trim_date_root.fasta.treefile")
+
+tree1 <- read.tree("D:/wastewater/analysis1/all full length/a1_output_mis4_trim.fasta.timetree.nwk")
+ggtree(tree1) + geom_tiplab(aes(color=grep("Alpha", label)))
+tree1$tip.label
